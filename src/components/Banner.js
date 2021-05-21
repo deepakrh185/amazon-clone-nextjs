@@ -13,13 +13,22 @@ function Banner() {
         interval={5000}
       >
         <div>
-          <img loading="lazy" src="https://links.papareact.com/gi1" />
+          <img
+            loading="lazy"
+            src="https://images-eu.ssl-images-amazon.com/images/G/31/AmazonVideo/2021/X-site/Multititle/May/M17/reg/1500x600_Hero-Tall_JPN._CB667961979_.jpg"
+          />
         </div>
         <div>
-          <img loading="lazy" src="https://links.papareact.com/6ff" />
+          <img
+            loading="lazy"
+            src="https://images-eu.ssl-images-amazon.com/images/G/31/img20/CEPC/Wearables/FireBoltt/360/GW/SaleToday/Fire-Boltt-360_desktophero_1500x300._CB668277413_.jpg"
+          />
         </div>
         <div>
-          <img loading="lazy" src="https://links.papareact.com/7ma" />
+          <img
+            loading="lazy"
+            src="https://images-eu.ssl-images-amazon.com/images/G/31/AmazonVideo/2021/X-site/SingleTitle/WW84/Launch/1500x600_Hero-Tall_JPN._CB669639160_.jpg"
+          />
         </div>
       </Carousel>
     </div>
