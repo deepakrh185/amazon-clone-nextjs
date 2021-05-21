@@ -12,7 +12,7 @@ function Header() {
         <div className="mt-2 flex items-center flex-grow sm:flex-grow-0 p-1">
           <Image
             src="https://links.papareact.com/f90"
-            width={150}
+            width={100}
             height={40}
             className="cursor-pointer"
           />
