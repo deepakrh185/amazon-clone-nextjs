@@ -9,7 +9,7 @@ function Header() {
   return (
     <header>
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
-        <div className="mt-2 flex items-center flex-grow sm:flex-grow-0 p-1">
+        <div className="mt-2 flex items-center flex-grow sm:flex-grow-0 p-1 mr-2">
           <Image
             src="https://links.papareact.com/f90"
             width={100}
@@ -17,17 +17,18 @@ function Header() {
             className="cursor-pointer"
           />
         </div>
-        <div className="bg-yellow-400 flexhover:bg-yellow-500 sm:flex hidden items-center h-10 rounded-md flex-grow cursor-pointer ">
+        <div className="bg-yellow-400 flex hover:bg-yellow-500 sm:flex hidden items-center h-10 rounded-md flex-grow cursor-pointer ">
           <input
             type="text"
             className="p-2 h-full w-6 flex-grow rounded-l-md flex-shrink outline-none px-4"
+            placeholder="Search for products, brands and more"
           />
           <SearchIcon className="h-12 p-4  " />
         </div>
 
         <div className="text-white flex items-center text-sm space-x-6 mx-6 whitespace-nowrap ">
           <div>
-            <p className="link">Helo deepak</p>
+            <p className="link">Hello Deepak..!</p>
             <p className="link  font-extrabold md:text-sm">Account & Lists</p>
           </div>
           <div>
