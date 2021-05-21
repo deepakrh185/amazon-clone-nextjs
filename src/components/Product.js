@@ -12,12 +12,12 @@ function Product({ id, title, category, image, price, description }) {
   );
   const [hasPrime] = useState(Math.random() < 0.5);
   return (
-    <div className="relative flex flex-col m-5 bg-white z-30 p-10">
+    <div className="relative flex flex-col m-5 bg-white z-30 p-10 transform hover:scale-95 hover:bg-opacity-50 transition ease-out duration-300">
       <p className="absolute top-2 right-2 text-xs italic text-gray-400">
         {category}
       </p>
       <Image src={image} width={200} height={200} objectFit="contain" />
-      <h4 className="my-3  ">{title}</h4>
+      <h4 className="my-3 ">{title}</h4>
       <div className="flex ">
         {Array(rating)
           .fill()

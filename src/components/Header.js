@@ -5,7 +5,7 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
 
-function Header() {
+function Header(props) {
   return (
     <header>
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
@@ -22,6 +22,7 @@ function Header() {
             type="text"
             className="p-2 h-full w-6 flex-grow rounded-l-md flex-shrink outline-none px-4"
             placeholder="Search for products, brands and more"
+            onChange={props.handleChange}
           />
           <SearchIcon className="h-12 p-4  " />
         </div>
