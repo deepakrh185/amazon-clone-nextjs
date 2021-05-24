@@ -5,11 +5,30 @@ import { selectItems, selectTotal } from "../slices/basketSlice";
 import CheckoutProducts from "../components/CheckoutProducts";
 import { useSession } from "next-auth/client";
 import Currency from "react-currency-formatter";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+const stripePromise = loadStripe(process.env.stripe_public_key);
 
 function checkout() {
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
   const [session] = useSession();
+
+  const clickHandler = async () => {
+    const stripe = await stripePromise;
+
+    const checkoutSession = await axios.post("/api/create-checkout-session", {
+      items: items,
+      email: session.user.email,
+    });
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+    if (result.error) {
+      alert(result.error.message);
+    }
+  };
   return (
     <div className="bg-gray-100">
       <Header />
@@ -59,11 +78,13 @@ function checkout() {
               <h2 className="whitespace-nowrap">
                 Subtotal ({items.length} items):{" "}
                 <span className="font-bold">
-                  <Currency quantity={total * 53} currency="INR" />
+                  <Currency quantity={total} currency="INR" />
                 </span>
               </h2>
 
               <button
+                role="link"
+                onClick={clickHandler}
                 disabled={!session}
                 className={`button mt-2 ${
                   !session &&

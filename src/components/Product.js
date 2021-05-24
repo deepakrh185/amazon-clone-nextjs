@@ -28,7 +28,7 @@ function Product({ id, title, category, image, price, description }) {
     };
     dispatch(addToBasket(products));
   };
-
+  console.log(price);
   return (
     <div className="relative flex flex-col m-5 bg-white z-30 p-10 transform hover:scale-95 hover:bg-opacity-50 transition ease-out duration-300">
       <p className="absolute top-2 right-2 text-xs italic text-gray-400">
@@ -46,7 +46,7 @@ function Product({ id, title, category, image, price, description }) {
 
       <p className="text-xs my-2 line-clamp-2 ">{description}</p>
       <div className="mb-5">
-        <Currency quantity={price * 53} currency="INR" />
+        <Currency quantity={price} currency="INR" />
       </div>
       {hasPrime && (
         <div className="flex items-center space-x-2 -mt-5">
