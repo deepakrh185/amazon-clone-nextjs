@@ -15,7 +15,7 @@ function Header(props) {
   const items = useSelector(selectItems);
 
   return (
-    <header className="">
+    <header className="" style={{ position: "sticky", top: 0, zIndex: 50 }}>
       <div className=" flex items-center bg-amazon_blue p-1 flex-grow py-2">
         <div className="mt-2 flex items-center flex-grow sm:flex-grow-0 p-1 mr-2">
           <Image
@@ -43,19 +43,24 @@ function Header(props) {
             </p>
             <p className="link  font-extrabold md:text-sm">Account & Lists</p>
           </div>
-          <div>
-            <p className="link">Returns</p>
-            <p className="link font-extrabold md:text-sm"> & Orders</p>
+          <div className="link" onClick={() => router.push("/orders")}>
+            <p>Returns</p>
+            <p className=" font-extrabold md:text-sm"> & Orders</p>
           </div>
           <div
             className="relative flex  items-center cursor-pointer"
             onClick={() => router.push("/checkout")}
           >
-            <span className="absolute top-0 right-0 md:right-10 sm:right-10 h-5 w-4 bg-yellow-400 text-center rounded-full text-black font-bold">
+            <span className="absolute top-0 right-0 left-8 md:right-10 sm:right-10 h-5 w-4 bg-yellow-400 text-center rounded-full text-black font-bold ">
               {items.length}
             </span>
-            <ShoppingCartIcon className="h-10 " />
-            <p className="link font-extrabold md:text-sm hidden sm:inline mt-2">
+            {items.length > 0 ? (
+              <ShoppingCartIcon className="h-10 animate-bounce  " />
+            ) : (
+              <ShoppingCartIcon className="h-10 " />
+            )}
+
+            <p className="link font-extrabold md:text-sm hidden sm:inline mt-2 ">
               Basket
             </p>
           </div>

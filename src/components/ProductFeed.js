@@ -12,7 +12,7 @@ function ProductFeed({ products }) {
             title={title}
             category={category}
             description={description}
-            price={Math.round(price * 53)}
+            price={Math.round(price * 64)}
             image={image}
           />
         ))}
@@ -41,7 +41,7 @@ function ProductFeed({ products }) {
             title={title}
             category={category}
             description={description}
-            price={price * 53}
+            price={Math.round(price * 465)}
             image={image}
           />
         ))}
@@ -59,7 +59,7 @@ function ProductFeed({ products }) {
               title={title}
               category={category}
               description={description}
-              price={price * 53}
+              price={Math.round(price * 122)}
               image={image}
             />
           ))}
@@ -73,7 +73,7 @@ function ProductFeed({ products }) {
             title={title}
             category={category}
             description={description}
-            price={price * 53}
+            price={Math.round(price * 465)}
             image={image}
           />
         ))}

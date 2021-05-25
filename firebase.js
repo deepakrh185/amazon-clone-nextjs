@@ -1,5 +1,4 @@
 import firebase from "firebase";
-import Provider from "next-auth/providers";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAHu9Pvvis1Ke-ViTS3Pl7Qfqxw6JAM1yI",
@@ -10,3 +9,11 @@ const firebaseConfig = {
   appId: "1:778824779857:web:8c9420d88a4df49a2e1070",
   measurementId: "G-Y7Q2B64C4Z",
 };
+
+const app = !firebase.apps.length
+  ? firebase.initializeApp(firebaseConfig)
+  : firebase.app();
+
+const db = app.firestore();
+
+export default db;

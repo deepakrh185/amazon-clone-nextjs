@@ -13,6 +13,9 @@ module.exports = {
           DEFAULT: "#131921",
         },
       },
+      animation: {
+        spin: "spin 6s linear infinite",
+      },
     },
   },
   variants: {
