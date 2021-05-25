@@ -28,6 +28,7 @@ export default async (req, res) => {
     metadata: {
       email,
       images: JSON.stringify(items.map((item) => item.image)),
+      titles: JSON.stringify(items.map((item) => item.title)),
     },
   });
   res.status(200).json({ id: session.id });
