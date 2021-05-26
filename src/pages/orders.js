@@ -23,12 +23,12 @@ function Orders({ orders }) {
             ({ id, amount, amountShipping, images, timestamp, items }) => (
               <Order
                 key={id}
+                id={id}
                 amount={amount}
                 images={images}
                 amountShipping={amountShipping}
                 timestamp={timestamp}
                 items={items}
-                id={id}
               />
             )
           )}

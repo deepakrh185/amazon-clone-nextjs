@@ -5,7 +5,7 @@ export default async (req, res) => {
 
   const transformItems = items.map((item) => ({
     description: item.description,
-    quantity: 1,
+    quantity: item.quantity,
     price_data: {
       currency: "inr",
       unit_amount: item.price * 100,
