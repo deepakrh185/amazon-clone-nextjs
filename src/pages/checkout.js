@@ -7,6 +7,7 @@ import { useSession } from "next-auth/client";
 import Currency from "react-currency-formatter";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+
 const stripePromise = loadStripe(process.env.stripe_public_key);
 
 function checkout() {
@@ -18,7 +19,7 @@ function checkout() {
     const stripe = await stripePromise;
 
     const checkoutSession = await axios.post("/api/create-checkout-session", {
-      items,
+      items: items,
       email: session.user.email,
     });
 
