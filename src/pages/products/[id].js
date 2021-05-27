@@ -39,6 +39,7 @@ function Id({ product }) {
   const removeBasket = () => {
     dispatch(removeFromBasket({ id }));
   };
+  console.log("price", price);
   return (
     <div>
       <Head>
@@ -89,7 +90,7 @@ function Id({ product }) {
               </div>
             </p>
             <p className="text-yellow-500 text-2xl my-4">
-              <Currency quantity={Math.round(price * 98)} currency="INR" />
+              <Currency quantity={price} currency="INR" />
             </p>
             <p className="text-gray-600 text-base mb-5">
               {product.description}
@@ -145,6 +146,13 @@ export const getStaticProps = async (context) => {
   );
 
   return {
-    props: { product },
+    props: {
+      product: {
+        price: Math.round(product.price * 98),
+        image: product.image,
+        description: product.description,
+        title: product.title,
+      },
+    },
   };
 };
