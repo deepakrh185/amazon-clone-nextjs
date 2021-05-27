@@ -1,20 +1,25 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { StarIcon } from "@heroicons/react/solid";
-import { useState } from "react";
 import Currency from "react-currency-formatter";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../slices/basketSlice";
+import { useRouter } from "next/router";
+import styles from "../styles/Product.module.css";
+import { EyeIcon } from "@heroicons/react/outline";
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
 function Product({ id, title, category, image, price, description }) {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const [hasPrime] = useState(Math.random() < 0.5);
+
   const [rating] = useState(
     Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
   );
 
-  const [hasPrime] = useState(Math.random() < 0.5);
   const addItemsHandler = () => {
     const products = {
       id,
@@ -29,11 +34,35 @@ function Product({ id, title, category, image, price, description }) {
     dispatch(addToBasket(products));
   };
   return (
-    <div className="relative flex flex-col m-5 bg-white z-30 p-10 transform hover:scale-105 transition ease-out duration-300">
+    <div
+      className="relative flex flex-col m-5 bg-white z-30 p-10 transform hover:scale-105 transition ease-out duration-300 cursor-pointer"
+      onClick={() => router.push("/products/" + id)}
+    >
       <p className="absolute top-2 right-2 text-xs italic text-gray-400">
         {category}
       </p>
-      <Image src={image} width={200} height={200} objectFit="contain" />
+      <div className={`relative rounded-lg ${styles.product_image_wrapper}`}>
+        <Image
+          src={image}
+          width={200}
+          height={200}
+          objectFit="contain"
+          className={
+            "cursor-pointer rounded-lg overflow-hidden w-full " +
+            styles.loop_product_image
+          }
+        />
+        <div
+          className={`rounded-lg cursor-pointer ${styles.product_image_overly}`}
+        >
+          <div
+            className={`button rounded-lg ${styles.product_image_overly_button}`}
+          >
+            <span>Quick View</span>
+            <EyeIcon className="h-6" />
+          </div>
+        </div>
+      </div>
       <h4 className="my-3 ">{title}</h4>
       <div className="flex ">
         {Array(rating)
