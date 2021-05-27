@@ -88,12 +88,13 @@ function Id({ product }) {
                   ))}
               </div>
             </p>
-            <p className="text-gray-600 text-base mb-5">
-              {product.description}
-            </p>
             <p className="text-yellow-500 text-2xl my-4">
               <Currency quantity={Math.round(price * 98)} currency="INR" />
             </p>
+            <p className="text-gray-600 text-base mb-5">
+              {product.description}
+            </p>
+
             {hasPrime && (
               <div className="flex items-center space-x-2 mb-6">
                 <img src="https://links.papareact.com/fdw" className="w-12" />
