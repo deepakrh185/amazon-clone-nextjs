@@ -10,7 +10,8 @@ import { addToBasket, removeFromBasket } from "../../slices/basketSlice";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
-function Id({ product, price }) {
+function Id({ product }) {
+  const { title, category, image, price, description } = product;
   console.log("loging1 ->>", product);
   const dispatch = useDispatch();
 
@@ -21,9 +22,9 @@ function Id({ product, price }) {
     Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
   );
   const [hasPrime] = useState(Math.random() < 0.5);
+
   const addHandler = () => {
     const products = {
-      id,
       title,
       category,
       image,
@@ -40,7 +41,7 @@ function Id({ product, price }) {
   return (
     <div>
       <Head>
-        <title>{product.title} | Amazon</title>
+        <title>{title} | Amazon</title>
       </Head>
       <Header />
       <div className="bg-gray-200 p-10 mb-10">
@@ -52,7 +53,7 @@ function Id({ product, price }) {
           <span className="font-medium">
             <h3>Product</h3>
           </span>
-          &nbsp;/ <span className="text-yellow-500">{product.title}</span>
+          &nbsp;/ <span className="text-yellow-500">{title}</span>
         </div>
       </div>
       <main className="max-w-screen-xl mx-auto mt-5">
@@ -61,7 +62,7 @@ function Id({ product, price }) {
             <div className="w-full mb-4">
               <Image
                 className={"w-full rounded-lg " + styles.product_image}
-                src={product.image}
+                src={image}
                 width={700}
                 height={500}
                 objectFit="contain"
@@ -71,16 +72,18 @@ function Id({ product, price }) {
           </div>
 
           <div className="px-5 mb-10 w-full md:w-5/12">
-            <h1 className="my-2 text-3xl text-yellow-500 mb-2">
-              {product.title}
-            </h1>
+            <h1 className="my-2 text-3xl text-yellow-500 mb-2">{title}</h1>
             <p className="flex items-center mb-7">
               <b className="mr-1">Rating:</b>
               <div className="flex">
                 {Array(rating)
                   .fill()
                   .map((_, i) => (
-                    <StarIcon className="h-6 text-yellow-500" key={i} />
+                    <StarIcon
+                      key={id}
+                      className="h-6 text-yellow-500"
+                      key={i}
+                    />
                   ))}
               </div>
             </p>
@@ -88,10 +91,7 @@ function Id({ product, price }) {
               {product.description}
             </p>
             <p className="text-yellow-500 text-2xl my-4">
-              <Currency
-                quantity={Math.round(product.price * 64)}
-                currency="INR"
-              />
+              <Currency quantity={Math.round(price * 98)} currency="INR" />
             </p>
             {hasPrime && (
               <div className="flex items-center space-x-2 mb-6">

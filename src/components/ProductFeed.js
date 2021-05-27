@@ -13,7 +13,7 @@ function ProductFeed({ products }) {
               title={title}
               category={category}
               description={description}
-              price={Math.round(price * 64)}
+              price={Math.round(price * 98)}
               image={image}
             />
           ))}
@@ -29,7 +29,7 @@ function ProductFeed({ products }) {
                 title={title}
                 category={category}
                 description={description}
-                price={Math.round(price * 64)}
+                price={Math.round(price * 98)}
                 image={image}
               />
             ))}
@@ -44,7 +44,7 @@ function ProductFeed({ products }) {
               title={title}
               category={category}
               description={description}
-              price={Math.round(price * 64)}
+              price={Math.round(price * 98)}
               image={image}
             />
           ))}
@@ -63,7 +63,7 @@ function ProductFeed({ products }) {
                 title={title}
                 category={category}
                 description={description}
-                price={Math.round(price * 64)}
+                price={Math.round(price * 98)}
                 image={image}
               />
             ))}
@@ -78,7 +78,7 @@ function ProductFeed({ products }) {
               title={title}
               category={category}
               description={description}
-              price={Math.round(price * 64)}
+              price={Math.round(price * 98)}
               image={image}
             />
           ))}

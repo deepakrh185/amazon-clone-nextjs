@@ -73,7 +73,7 @@ function checkout() {
             )}
           </div>
         </div>
-        {items.length >= 0 && (
+        {items.length > 0 && (
           <div className="flex flex-col bg-white p-14 shadow-md m-5">
             <>
               <h2 className="whitespace-nowrap">

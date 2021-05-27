@@ -34,23 +34,20 @@ function Product({ id, title, category, image, price, description }) {
     dispatch(addToBasket(products));
   };
   return (
-    <div
-      className="relative flex flex-col m-5 bg-white z-30 p-10 transform hover:scale-105 transition ease-out duration-300 cursor-pointer"
-      onClick={() => router.push("/products/" + id)}
-    >
+    <div className="relative flex flex-col m-5 bg-white z-30 p-10 transform hover:scale-105 transition ease-out duration-300 cursor-pointer">
       <p className="absolute top-2 right-2 text-xs italic text-gray-400">
         {category}
       </p>
-      <div className={`relative rounded-lg ${styles.product_image_wrapper}`}>
+
+      <div
+        className={`relative rounded-lg justify-center  flex ${styles.product_image_wrapper}`}
+      >
         <Image
           src={image}
           width={200}
           height={200}
           objectFit="contain"
-          className={
-            "cursor-pointer rounded-lg overflow-hidden w-full " +
-            styles.loop_product_image
-          }
+          className={"cursor-pointer "}
         />
         <div
           className={`rounded-lg cursor-pointer ${styles.product_image_overly}`}
@@ -58,7 +55,9 @@ function Product({ id, title, category, image, price, description }) {
           <div
             className={`button rounded-lg ${styles.product_image_overly_button}`}
           >
-            <span>Quick View</span>
+            <span onClick={() => router.push("/products/" + id)}>
+              View Details
+            </span>
             <EyeIcon className="h-6" />
           </div>
         </div>

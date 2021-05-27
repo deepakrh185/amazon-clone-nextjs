@@ -69,11 +69,8 @@
 .product_image_overly_button span {
   margin-right: 5px;
 }
-.product_image_wrapper:hover {
+.product_image_wrapper:hover .product_image_overly {
   opacity: 1;
-  align-items: center;
-  justify-content: center;
-  display: flex;
 }
 
 .quickView::-webkit-scrollbar {
