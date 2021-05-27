@@ -11,7 +11,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 function Id({ product }) {
-  const { title, category, image, price, description } = product;
+  const { id, title, category, image, price, description } = product;
   console.log("loging1 ->>", product);
   const dispatch = useDispatch();
 
@@ -25,6 +25,7 @@ function Id({ product }) {
 
   const addHandler = () => {
     const products = {
+      id,
       title,
       category,
       image,
