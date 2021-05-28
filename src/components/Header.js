@@ -37,11 +37,20 @@ function Header(props) {
         </div>
 
         <div className="text-white flex items-center text-sm space-x-6 mx-6 whitespace-nowrap ">
-          <div onClick={!session ? signIn : signOut}>
+          <div onClick={!session ? signIn : null}>
             <p className="link">
               {session ? `Hello, ${session.user.name}` : "Sign in"}
             </p>
-            <p className="link  font-extrabold md:text-sm">Account & Lists</p>
+            {!session ? (
+              <p className="link  font-extrabold md:text-sm">Account & Lists</p>
+            ) : (
+              <p
+                onClick={session ? signOut : null}
+                className="link  font-extrabold md:text-sm"
+              >
+                Sign Out
+              </p>
+            )}
           </div>
           <div className="link" onClick={() => router.push("/orders")}>
             <p>Returns</p>
