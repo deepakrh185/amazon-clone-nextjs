@@ -41,7 +41,7 @@ function Orders({ orders }) {
 export default Orders;
 
 export async function getServerSideProps(context) {
-  const awaitSession = await getSession(context);
+  const Session = await getSession(context);
 
   const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -49,6 +49,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return {
       props: {},
+      Session,
     };
   }
   const stripeOrders = await db
@@ -76,7 +77,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       orders,
-      awaitSession,
+      Session,
     },
   };
 }
