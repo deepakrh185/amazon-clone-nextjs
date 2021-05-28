@@ -11,9 +11,12 @@ function Orders({ orders }) {
     <div>
       <Header />
       <main className="max-w-screen-lg  mx-auto p-10">
-        <h1 className="text-3xl border-b mb-2 pb-1 border-yellow-300">
-          Your Orders
-        </h1>
+        <div className="flex items-center  border-b mb-2 pb-1 border-yellow-300">
+          <h1 className="text-3xl ">Your Orders</h1>
+          {session ? (
+            <h5 className="ml-2">(Refresh the page to get recent orders)</h5>
+          ) : null}
+        </div>
         {session ? (
           <h2>{orders.length} Orders</h2>
         ) : (
@@ -49,10 +52,7 @@ export async function getServerSideProps(context) {
 
   const session = await getSession(context);
   if (!session) {
-    return {
-      props: {},
-      Session,
-    };
+    return { props: {} };
   }
   const stripeOrders = await db
     .collection("users")
