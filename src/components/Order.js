@@ -1,6 +1,5 @@
 import moment from "moment";
 import Currency from "react-currency-formatter";
-import Footer from "./Footer";
 
 function Order({ id, amount, amountShipping, images, timestamp, items }) {
   return (
@@ -35,7 +34,6 @@ function Order({ id, amount, amountShipping, images, timestamp, items }) {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
