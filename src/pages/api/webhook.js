@@ -1,22 +1,22 @@
 import { buffer } from "micro";
 import * as admin from "firebase-admin";
 
-//secure connection to firebase from backend
+// Secure a connection to firebase
 const serviceAccount = require("../../../permission.json");
-
 const app = !admin.apps.length
   ? admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
     })
   : admin.app();
 
-//Establish connection to stripePromise
+// Stripe
+
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
+const endpointSecurit = process.env.STRIPE_SIGNING_SECRET;
 
-const fulfillOrder = async (session) => {
-  console.log("FULLFILL", session);
+const fullfillOrder = async (session) => {
+  console.log("Fullfilling Order!!!");
 
   return app
     .firestore()
@@ -25,42 +25,49 @@ const fulfillOrder = async (session) => {
     .collection("orders")
     .doc(session.id)
     .set({
-      //email: metadata.email,
       amount: session.amount_total / 100,
-      amount_shipping: session.total_details.amount_shipping / 100,
+      amount_shipping: session.total_details_amount_shipping / 100,
       images: JSON.parse(session.metadata.images),
       title: JSON.parse(session.metadata.titles),
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
     })
     .then(() => {
-      console.log("SUCCESS");
+      console.log(`SUCCESS: Order ${session.id} has been added to DB!`);
     });
 };
 
 export default async (req, res) => {
   if (req.method === "POST") {
     const requestBuffer = await buffer(req);
-    const payload = requestBuffer.toString();
-    const sig = req.headers["stripe-signature"];
+    const payload = await requestBuffer.toString();
+    const sig = await req.headers["stripe-signature"];
 
     let event;
-    //verify that the EVENT posted came from stripe
+
+    // Verify (came from stripe)
     try {
-      event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
-    } catch (err) {
-      console.log("error", err.message);
-      return res.status(400).send(`webhook error ${err.message}`);
+      event = await stripe.webhooks.constructEvent(
+        payload,
+        sig,
+        endpointSecurit
+      );
+    } catch (e) {
+      console.log("ERROR", e.message);
+      return res.status(400).send({ message: "Webhook error: " + e.message });
     }
-    // Handle the checkout.session.completed event
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
 
-      return fulfillOrder(session)
+      // Fullfill the order
+      return fullfillOrder(session)
         .then(() => res.status(200))
-        .catch((err) => res.status(400).send(`webhook error: ${err.message}`));
+        .catch((e) =>
+          res.status(400).send({ message: "WEBHOOK_ERROR: " + e.message })
+        );
     }
   }
 };
+
 export const config = {
   api: {
     bodyParser: false,
