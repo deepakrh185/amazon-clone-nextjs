@@ -28,5 +28,4 @@ function success() {
     </div>
   );
 }
-
 export default success;
