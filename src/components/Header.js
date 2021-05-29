@@ -38,8 +38,12 @@ function Header(props) {
 
         <div className="text-white flex items-center text-sm space-x-6 mx-6 whitespace-nowrap ">
           <div onClick={!session ? signIn : null}>
-            <p className="link">
-              {session ? `Hello, ${session.user.name}` : "Sign in"}
+            <p>
+              {session ? (
+                `Hello, ${session.user.name}`
+              ) : (
+                <p className="link">Sign in</p>
+              )}
             </p>
             {!session ? (
               <p className="link  font-extrabold md:text-sm">Account & Lists</p>
