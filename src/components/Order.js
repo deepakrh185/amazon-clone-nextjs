@@ -7,7 +7,7 @@ function Order({ id, amount, amountShipping, images, timestamp, items }) {
       <div className="relative border ">
         <div className="flex item-center space-x-10 p-5 bg-gray-100 text-sm text-gray-600">
           <div className="font-bold text-xs">
-            <p>ORDER PLACED</p>
+            <p>ORDER CED</p>
             <p>{moment.unix(timestamp).format("DD MM YYYY")}</p>
           </div>
 

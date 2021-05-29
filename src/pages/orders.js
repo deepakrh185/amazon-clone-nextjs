@@ -38,7 +38,6 @@ function Orders({ orders }) {
           )}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
