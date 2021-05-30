@@ -27,9 +27,7 @@ function checkout() {
     const result = await stripe.redirectToCheckout({
       sessionId: checkoutSession.data.id,
     });
-    if (result.error) {
-      alert(result.error.message);
-    }
+    if (result.error) alert(result.error.message);
   };
   return (
     <div className="bg-gray-100">

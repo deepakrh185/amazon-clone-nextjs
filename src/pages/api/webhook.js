@@ -57,7 +57,7 @@ export default async (req, res) => {
 
       // Fulfill the order
       return fulfillOrder(session)
-        .then(() => res.json({ received: true }))
+        .then(() => res.status(200).json({ received: true }))
         .catch((e) =>
           res.status(400).send({ message: "WEBHOOK_ERROR:!!! " + e.message })
         );
