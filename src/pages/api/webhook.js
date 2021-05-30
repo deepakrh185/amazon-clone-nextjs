@@ -3,6 +3,7 @@ import * as admin from "firebase-admin";
 
 // Secure a connection to firebase
 const serviceAccount = require("../../../permission.json");
+
 const app = !admin.apps.length
   ? admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
@@ -15,8 +16,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const endpointSecurit = process.env.STRIPE_SIGNING_SECRET;
 
-const fullfillOrder = async (session) => {
-  console.log("Fullfilling Order!!!");
+const fulfillOrder = async (session) => {
+  console.log("Fullfilling Order!!!", session);
 
   return app
     .firestore()
@@ -49,16 +50,16 @@ export default async (req, res) => {
       event = stripe.webhooks.constructEvent(payload, sig, endpointSecurit);
     } catch (e) {
       console.log("ERROR", e.message);
-      return res.status(400).send({ message: "Webhook error: " + e.message });
+      return res.status(400).send({ message: "Webhook error:!!!" + e.message });
     }
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
 
-      // Fullfill the order
-      return fullfillOrder(session)
-        .then(() => res.status(200).json({ received: true }))
+      // Fulfill the order
+      return fulfillOrder(session)
+        .then(() => res.json({ received: true }))
         .catch((e) =>
-          res.status(400).send({ message: "WEBHOOK_ERROR: " + e.message })
+          res.status(400).send({ message: "WEBHOOK_ERROR:!!! " + e.message })
         );
     }
   }
