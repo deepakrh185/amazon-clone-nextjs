@@ -26,9 +26,9 @@ const fulfillOrder = async (session) => {
   //console.log('Fulfilling order', session)
 
   //new addition from github
-  const images = JSON.parse(session.metadata.images).map((image) =>
-    JSON.stringify(image)
-  );
+  // const images = JSON.parse(session.metadata.images).map((image) =>
+  //   JSON.stringify(image)
+  // );
 
   return app
     .firestore()
@@ -39,8 +39,8 @@ const fulfillOrder = async (session) => {
     .set({
       amount: session.amount_total / 100,
       amount_shipping: session.total_details.amount_shipping / 100,
-      images: images,
-      //images: JSON.parse(session.metadata.images),
+      // images: images,
+      images: JSON.parse(session.metadata.images),
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
     })
     .then(() => {

@@ -42,9 +42,9 @@ export default async (req, res) => {
   }));
 
   // Instead of sending an array of multiple similar values, just group them to save space in session
-  const groupedImages = Object.values(
-    groupBy(items.map((item) => path.basename(item.image)))
-  ).map((group) => [group.length, group[0]]);
+  // const groupedImages = Object.values(
+  //   groupBy(items.map((item) => path.basename(item.image)))
+  // ).map((group) => [group.length, group[0]]);
   /*
         This gives us an array like this (shorter for storing into the session):
         [
@@ -66,8 +66,8 @@ export default async (req, res) => {
     cancel_url: `${process.env.HOST}/checkout`,
     metadata: {
       email,
-      images: JSON.stringify(groupedImages),
-      //images: JSON.stringify(items.map(item => item.image))
+      //images: JSON.stringify(groupedImages),
+      images: JSON.stringify(items.map(item => item.image))
     },
   });
 
