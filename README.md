@@ -4,6 +4,7 @@
 * The app is complete responsive with cool design.
 * The app is done with Reactjs,Nextjs and tailwindCss.
 * The app has the payment feature with the help of stripe.
+* The data of the user is maintained by the firebase firestore.
 * 
 
 
