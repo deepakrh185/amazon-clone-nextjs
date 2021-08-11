@@ -5,7 +5,7 @@
 * The app has Google and facebook authentication.
 * The data of the user is maintained and stored by the firebase firestore.
 * The app has the payment feature with the help of stripe.
-* Technology used : Reactjs,Nextjs,tailwindCss and stripe .
+* Technology used : Reactjs,Nextjs,tailwindCss,Firebase and stripe .
 
 
 
